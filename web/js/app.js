@@ -1,4 +1,5 @@
 import { DatabaseClient } from './database-client.js';
+import { parseStructuredJson, createJsonPreview, createJsonFields } from './json-viewer.js';
 
 const element = (id) => document.getElementById(id);
 const databaseClient = new DatabaseClient();
@@ -101,7 +102,6 @@ async function renderPage(table, page) {
   const result = await databaseClient.request('page', { table, page });
   if (activeOperation !== operation) return;
   currentTable = table;
-  currentPage = page;
   const totalRows = result.total;
   const pageSize = result.pageSize;
   page = result.page;
@@ -140,13 +140,23 @@ async function renderPage(table, page) {
     tr.append(number);
     row.forEach((value, column) => {
       const td = document.createElement('td');
-      td.textContent = cellText(value);
+      const json = parseStructuredJson(value);
+      if (json) {
+        td.className = 'json-cell';
+        td.append(createJsonPreview(json));
+      } else {
+        td.textContent = cellText(value);
+      }
       td.tabIndex = 0;
-      td.title = 'View full value';
+      td.title = json ? 'Review JSON fields' : 'View full value';
       if (value === null) td.className = 'null';
       if (value && value.type === 'blob') td.className = 'blob';
       const inspect = () => {
         element('cell-title').textContent = result.columns[column];
+        element('json-controls').hidden = !json;
+        element('json-fields').replaceChildren();
+        if (json) element('json-fields').append(createJsonFields(json));
+        showCellView(Boolean(json));
         element('cell-value').textContent =
           value && value.type === 'blob'
             ? `Hex (${value.length} bytes)\n\n${value.value}`
@@ -219,6 +229,16 @@ document.addEventListener('keydown', (event) => {
 });
 element('prev').onclick = () => loadPage(currentTable, currentPage - 1);
 element('next').onclick = () => loadPage(currentTable, currentPage + 1);
+function showCellView(fields) {
+  element('json-fields').hidden = !fields;
+  element('cell-value').hidden = fields;
+  element('show-fields').setAttribute('aria-pressed', String(fields));
+  element('show-raw').setAttribute('aria-pressed', String(!fields));
+}
+
+element('show-fields').onclick = () => showCellView(true);
+element('show-raw').onclick = () => showCellView(false);
+
 element('close-dialog').onclick = () => element('cell-dialog').close();
 element('cancel').onclick = () => {
   operation++;

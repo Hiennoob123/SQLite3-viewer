@@ -45,6 +45,11 @@ On Windows, use `run.bat --port 8080 --no-browser`.
 `NULL` and binary values have distinct displays. Binary values can be inspected
 as hexadecimal. SQLite integers retain their full 64-bit precision.
 
+JSON objects and arrays show field previews directly in their cells. Open a
+JSON cell to review key/value fields, expand nested objects and arrays, or switch
+to **Raw JSON** to see the original text. JSON number tokens retain their original
+precision. Large objects and arrays display fields in batches of 100.
+
 ## Limits
 
 The whole database must fit in browser memory. Encrypted databases need a

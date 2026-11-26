@@ -634,3 +634,124 @@ dialog pre {
     margin-top: 20px;
   }
 }
+
+/* Structured JSON values share the grid's cell inspector. */
+td.json-cell {
+  min-width: 240px;
+  vertical-align: top;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+.json-preview {
+  display: grid;
+  gap: 5px;
+  max-width: 300px;
+}
+.json-summary,
+.json-more {
+  color: #857196;
+  font-size: 10px;
+}
+.json-summary {
+  font-weight: 600;
+  margin-bottom: 2px;
+}
+.json-preview-field {
+  display: grid;
+  grid-template-columns: minmax(65px, 0.8fr) minmax(0, 1.2fr);
+  gap: 12px;
+  font-size: 11px;
+}
+.json-preview-field > span {
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.json-key {
+  color: #655080;
+  font-weight: 500;
+}
+.json-string {
+  color: #44694c;
+}
+.json-number {
+  color: #2d6890;
+}
+.json-boolean {
+  color: #99641e;
+}
+.json-null {
+  color: #858087;
+  font-style: italic;
+}
+.json-object,
+.json-array {
+  color: #86818d;
+}
+.json-controls {
+  display: flex;
+  gap: 6px;
+  margin-top: 18px;
+  margin-bottom: 12px;
+}
+.json-controls button {
+  padding: 7px 12px;
+  font-size: 12px;
+}
+.json-controls button[aria-pressed='true'] {
+  color: #62429d;
+  background: #eee8f8;
+  border-color: #d5c8e9;
+}
+#json-fields {
+  max-height: 60vh;
+  overflow: auto;
+  margin-top: 12px;
+  border: 1px solid #e9e4ef;
+  border-radius: 7px;
+}
+.json-fields {
+  font:
+    12px/1.6 Consolas,
+    'SFMono-Regular',
+    monospace;
+}
+.json-field,
+.json-group > summary {
+  padding: 10px 12px;
+  border-bottom: 1px solid #f0ecf4;
+  overflow-wrap: anywhere;
+}
+.json-field {
+  display: grid;
+  grid-template-columns: minmax(80px, 1fr) minmax(0, 2fr);
+  gap: 16px;
+}
+.json-field .json-value {
+  white-space: pre-wrap;
+}
+.json-group > summary {
+  cursor: pointer;
+  background: #fcfbfd;
+}
+.json-group > summary .json-key {
+  margin-right: 14px;
+}
+.json-group > .json-fields {
+  margin-left: 16px;
+  border-left: 1px solid #e5ddeb;
+}
+.json-empty {
+  color: #8a8392;
+  padding: 10px 12px;
+  margin: 0;
+}
+.json-load-more {
+  margin: 10px 12px;
+  font:
+    12px 'Segoe UI',
+    sans-serif;
+}
+.dialog-heading strong {
+  overflow-wrap: anywhere;
+  min-width: 0;
+}

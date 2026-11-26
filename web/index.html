@@ -98,11 +98,16 @@
         ><button id="cancel">Cancel</button>
       </div>
     </main>
-    <dialog id="cell-dialog">
+    <dialog id="cell-dialog" aria-labelledby="cell-title">
       <div class="dialog-heading">
         <strong id="cell-title">Cell value</strong
         ><button id="close-dialog" aria-label="Close cell value">✕</button>
       </div>
+      <div id="json-controls" class="json-controls" role="group" aria-label="JSON display" hidden>
+        <button id="show-fields" type="button" aria-pressed="true">Fields</button>
+        <button id="show-raw" type="button" aria-pressed="false">Raw JSON</button>
+      </div>
+      <div id="json-fields" hidden></div>
       <pre id="cell-value"></pre>
     </dialog>
   </body>

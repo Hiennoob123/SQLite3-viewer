@@ -1,7 +1,7 @@
 function createSampleDatabase(SQL) {
   const db = new SQL.Database();
   db.run(
-    'CREATE TABLE products (id INTEGER PRIMARY KEY, name TEXT, category TEXT, price REAL, in_stock INTEGER, description TEXT)',
+    'CREATE TABLE products (id INTEGER PRIMARY KEY, name TEXT, category TEXT, price REAL, in_stock INTEGER, description TEXT, metadata TEXT)',
   );
   db.run(
     'CREATE TABLE orders (id INTEGER PRIMARY KEY, product_id INTEGER, quantity INTEGER, ordered_at TEXT)',
@@ -21,9 +21,14 @@ function createSampleDatabase(SQL) {
     ['Laptop sleeve', 'Accessories', 32, 27, 'Fits 14-inch laptops'],
     ['Desk mat', 'Workspace', 29, 44, 'A softer surface for your workspace'],
   ];
-  products.forEach((product, index) =>
-    db.run('INSERT INTO products VALUES (?, ?, ?, ?, ?, ?)', [index + 1, ...product]),
-  );
+  products.forEach((product, index) => {
+    const metadata = JSON.stringify({
+      sku: `PRODUCT-${index + 1}`,
+      tags: [product[1].toLowerCase()],
+      availability: { inStock: product[3] > 0, quantity: product[3] },
+    });
+    db.run('INSERT INTO products VALUES (?, ?, ?, ?, ?, ?, ?)', [index + 1, ...product, metadata]);
+  });
   db.run(
     "INSERT INTO customers VALUES (1, 'Example Customer 1', 'customer1@example.com'), (2, 'Example Customer 2', 'customer2@example.com')",
   );
