@@ -1,0 +1,32 @@
+# Local database files and SQLite sidecars
+*.db
+*.db3
+*.sqlite
+*.sqlite3
+*-wal
+*-shm
+*-journal
+
+# Python caches and virtual environments
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+
+# Editor and operating-system files
+.idea/
+.vscode/
+.DS_Store
+Thumbs.db
+Desktop.ini
+
+# Local settings and generated output
+.env
+.env.*
+!.env.example
+.openai/
+node_modules/
+dist/
+build/
+coverage/
+*.log

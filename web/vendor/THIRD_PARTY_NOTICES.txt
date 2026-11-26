@@ -1,0 +1,40 @@
+Third-party notices for SQLite Viewer
+====================================
+
+Keep this directory's license and author files with redistributed copies of
+sql-wasm.js and sql-wasm.wasm.
+
+sql.js 1.13.0
+-------------
+Copyright (c) 2017 sql.js authors (see AUTHORS.sql.js).
+License text, including its additional Makefile attribution, is preserved
+verbatim in LICENSE.sql.js. Author credits are in AUTHORS.sql.js.
+Upstream source https://github.com/sql-js/sql.js/tree/v1.13.0
+Upstream license https://github.com/sql-js/sql.js/blob/v1.13.0/LICENSE
+Upstream authors https://github.com/sql-js/sql.js/blob/v1.13.0/AUTHORS
+
+Emscripten runtime
+------------------
+sql.js distributes JavaScript and WebAssembly built using Emscripten.
+The sql.js v1.13.0 development-container configuration pins Emscripten 4.0.5.
+Its MIT and University of Illinois/NCSA license text and included Node.js
+notice are preserved verbatim in LICENSE.emscripten.
+Upstream license https://github.com/emscripten-core/emscripten/blob/4.0.5/LICENSE
+Build configuration https://github.com/sql-js/sql.js/blob/v1.13.0/.devcontainer/Dockerfile
+
+musl C runtime
+--------------
+Copyright and license notices for Emscripten's bundled musl runtime are
+preserved verbatim in COPYRIGHT.musl, including its contributor credits
+and third-party component descriptions.
+Upstream notice https://github.com/emscripten-core/emscripten/blob/4.0.5/system/lib/libc/musl/COPYRIGHT
+
+SQLite
+------
+SQLite's deliverable code and documentation are dedicated to the public domain.
+Official statement https://sqlite.org/copyright.html
+
+Python runtime
+--------------
+The local launcher uses a separately installed Python interpreter and its
+standard library. Python is supplied by the user's own installation.

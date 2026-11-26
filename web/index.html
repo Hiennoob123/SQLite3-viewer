@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#f5f4f0" />
+    <title>SQLite Viewer</title>
+    <link rel="stylesheet" href="styles.css" />
+    <script type="module" src="js/app.js"></script>
+  </head>
+  <body>
+    <aside class="sidebar">
+      <a class="brand" href="./"><span class="brand-mark">▤</span> SQLite <span>Viewer</span></a>
+      <button id="open" class="primary">
+        <span aria-hidden="true">＋</span> Open database <kbd>Ctrl O</kbd>
+      </button>
+      <input
+        id="file"
+        type="file"
+        accept=".db,.sqlite,.sqlite3,.db3,application/vnd.sqlite3"
+        hidden
+      />
+      <div class="section-label">DATABASE</div>
+      <div id="database" class="database-name">No database open</div>
+      <div class="table-heading">
+        <span class="section-label">TABLES & VIEWS</span
+        ><span id="table-count" class="count">0</span>
+      </div>
+      <nav id="tables" aria-label="Database tables">
+        <p class="sidebar-hint">Your tables will appear here.</p>
+      </nav>
+      <div class="sidebar-footer">
+        <span class="status-dot"></span> Local file access <span class="readonly">Read only</span>
+      </div>
+    </aside>
+    <main>
+      <header>
+        <div class="breadcrumb">
+          Workspace <span>/</span> <span id="crumb">Database explorer</span>
+        </div>
+        <span class="privacy">● &nbsp; Files stay in your browser</span>
+      </header>
+      <div id="error" role="alert" hidden></div>
+      <section id="welcome" class="welcome">
+        <div class="file-icon" aria-hidden="true">▤</div>
+        <p class="eyebrow">A LITTLE WINDOW INTO YOUR DATA</p>
+        <h1>Open a database.<br />See what’s inside.</h1>
+        <p class="intro">Explore your SQLite tables in a clean, simple workspace.</p>
+        <div
+          id="dropzone"
+          class="dropzone"
+          tabindex="0"
+          role="button"
+          aria-label="Choose a SQLite database"
+        >
+          <span class="upload-icon" aria-hidden="true">↥</span>
+          <strong>Drop your SQLite file here</strong>
+          <span>or <u>browse files</u> to get started</span>
+          <small>.sqlite · .sqlite3 · .db</small>
+        </div>
+        <button id="sample" class="sample">
+          Just exploring? <strong>Try a sample database <span aria-hidden="true">↗</span></strong>
+        </button>
+        <p class="snapshot-note">
+          Open a standalone database or an exported backup.<br />For a database in use, export a
+          backup first to include its latest changes.
+        </p>
+      </section>
+      <section id="viewer" class="viewer" hidden>
+        <div class="view-heading">
+          <div>
+            <p class="eyebrow">TABLE EXPLORER</p>
+            <h1 id="title"></h1>
+          </div>
+          <span class="view-badge">Read only</span>
+        </div>
+        <div class="toolbar">
+          <div class="data-tab">▦ &nbsp; Table data</div>
+          <div class="metadata">
+            <span id="row-count"></span><i></i><span id="column-count"></span>
+          </div>
+        </div>
+        <div id="grid-wrap" class="grid-wrap" tabindex="0" aria-label="Scrollable table data">
+          <table id="grid"></table>
+          <p id="empty" hidden>This table has no rows.</p>
+        </div>
+        <footer class="pagination">
+          <span id="range"></span>
+          <div>
+            <button id="prev" aria-label="Previous page">← Previous</button><span id="page"></span
+            ><button id="next" aria-label="Next page">Next →</button>
+          </div>
+        </footer>
+        <p class="grid-hint">Click a cell to view its full value.</p>
+      </section>
+      <div id="loading" class="loading" role="status" hidden>
+        <span class="spinner"></span><span id="loading-text">Opening database…</span
+        ><button id="cancel">Cancel</button>
+      </div>
+    </main>
+    <dialog id="cell-dialog">
+      <div class="dialog-heading">
+        <strong id="cell-title">Cell value</strong
+        ><button id="close-dialog" aria-label="Close cell value">✕</button>
+      </div>
+      <pre id="cell-value"></pre>
+    </dialog>
+  </body>
+</html>
