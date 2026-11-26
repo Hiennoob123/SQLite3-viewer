@@ -6,6 +6,8 @@ table or view, and inspect its rows in a scrollable grid.
 Database files are processed in your browser. The app uses an in-memory copy
 with SQLite query-only mode enabled. All browser dependencies are bundled.
 
+This tool is mainly used for inspecting logs written in sqlite3 file while developing.
+
 ## Requirements
 
 - Python 3.10 or newer to run the local server.
@@ -42,26 +44,6 @@ On Windows, use `run.bat --port 8080 --no-browser`.
 
 `NULL` and binary values have distinct displays. Binary values can be inspected
 as hexadecimal. SQLite integers retain their full 64-bit precision.
-
-## Source layout
-
-```text
-web/
-  index.html                 Page structure
-  styles.css                 Responsive styles
-  js/
-    app.js                   UI and file selection
-    database-client.js       Worker communication and cancellation
-    database-worker.js       Database loading and paged queries
-    sample-database.js       Fictional example data
-  vendor/                    SQLite engine and third-party notices
-run.py                       Local HTTP launcher
-run.bat                      Windows launcher
-```
-
-The browser files are editable source. Changes take effect after refreshing the
-page. The `web` directory can also be served by a static HTTP server. HTTP serving
-is required for browser modules, workers, and WebAssembly.
 
 ## Limits
 
