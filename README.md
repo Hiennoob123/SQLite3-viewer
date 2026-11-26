@@ -13,15 +13,25 @@ with SQLite query-only mode enabled. All browser dependencies are bundled.
 
 ## Run
 
-From the project directory, serve the browser files over HTTP.
+On Windows, double-click `run.bat` or run it from a terminal.
+
+On macOS or Linux, run the following from the project folder.
 
 ```sh
-python3 -m http.server 8080 --bind 127.0.0.1 --directory web
+python3 run.py
 ```
 
-On Windows, use `python` in place of `python3`. Open http://127.0.0.1:8080
-in your browser. Keep the terminal open while using the viewer, and press
-Ctrl+C to stop the server.
+The launcher chooses an available loopback port and opens your default browser.
+Keep the terminal open while using the viewer. Press Ctrl+C to stop the server.
+The launcher also works when called from another directory.
+
+Optional arguments let you choose a port or start the server without opening a browser.
+
+```sh
+python3 run.py --port 8080 --no-browser
+```
+
+On Windows, use `run.bat --port 8080 --no-browser`.
 
 ## Browse a database
 
@@ -45,6 +55,8 @@ web/
     database-worker.js       Database loading and paged queries
     sample-database.js       Fictional example data
   vendor/                    SQLite engine and third-party notices
+run.py                       Local HTTP launcher
+run.bat                      Windows launcher
 ```
 
 The browser files are editable source. Changes take effect after refreshing the
